@@ -1,0 +1,130 @@
+﻿@using WebApplication_GameStoreIL.Controllers;
+@using WebApplication_GameStoreIL.Models;
+@{
+    ViewBag.Title = "statistics";
+}
+
+<h1 class="font-weight-lightert">Statistics</h1>
+<br />
+<br />
+<br />
+
+<div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <div id="container" class=""></div>
+
+    <br />
+    <br />
+    <br />
+    <table id="datatable" class="" hidden>
+        <thead>
+            <tr>
+                <th></th>
+                <th>name of product</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var v in ViewBag.data1 as ICollection<Stat>)
+            {
+                <tr>
+                    <th>@v.Key</th>
+                    <th>@v.Values</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        Highcharts.chart('container', {
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'The most popular product on open carts'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'number of current cart the product in'
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
+            }
+
+        });
+    </script>
+
+</div>
+
+
+<br />
+<br />
+
+
+<div>
+    <div id="container2" class=""></div>
+
+    <br />
+    <br />
+    <br />
+    <table id="datatable2" class="" hidden>
+        <thead>
+            <tr>
+                <th></th>
+                <th>number of products</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var v in ViewBag.data2 as ICollection<Stat>)
+            {
+                <tr>
+                    <th>@v.Key</th>
+                    <th>@v.Values</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        Highcharts.chart('container2', {
+            data: {
+                table: 'datatable2'
+            },
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'The category that have the biggest number of products'
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.percentage:.1f} %'
+                    }
+                }
+
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            }
+        });
+    </script>
+
+</div>

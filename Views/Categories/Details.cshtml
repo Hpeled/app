@@ -1,0 +1,135 @@
+﻿@model WebApplication_GameStoreIL.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@*------------------------------------------ORIGINAL
+    <h1>Details</h1>
+
+    <div>
+        <h4>Category</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    ------------------------------------------ORIGINAL
+*@
+<div class="text-center mb-4">
+    <h1 class="display-2 text-">@Model.Name</h1>
+</div>
+
+<section id="searchSection">
+    <form asp-controller="Products" asp-action="SearchByNameAndCategory" asp-route-category="BoardGames">
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" id="productName" name="productName" required min="1" placeholder="Enter game name" aria-label="Search Game">
+            <div class="input-group-append">
+                <button type="submit" value="Search" class="btn btn-dark">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <form asp-controller="Products" asp-action="AdvancedSearch">
+        <p class="text-dark">Advanced Search:</p>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" id="productName" class="form-control" name="productName" required min="1" placeholder="Product Name">
+            </div>
+            <div class="col-md-3" hidden>
+                <select class="custom-select" name="category" id="category" required aria-label="Category select ">
+                    <option value="Mind Games" disabled>Mind Games</option>
+                    <option value="Sport Games" disabled>Sport Games</option>
+                    <option value="Box Games" selected>Box Games</option>
+                    <option value="Lego Games" disabled>Lego Games</option>
+                    <option value="Console Games" disabled>Console Games</option>
+                    <option value="Bicycles and scooters" disabled>Bicycles and scooters</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="custom-select" aria-label="Min price select" name="price" id="price" required>
+                    <option value="" selected disabled>Max Price</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
+                    <option value="400">400</option>
+                    <option value="500">500</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" value="Search" class="btn btn-dark">Search</button>
+            </div>
+        </div>
+    </form>
+</section>
+<div class="row">
+ 
+
+    <div class="row mt-2">
+        @foreach (var item in Model.Products)
+        {
+            //string priceColor = "";
+            //if (item.IsOnSale)
+            //{
+            //    priceColor = "text-danger";
+            //}
+            <div class="card" onmouseout="changeBackToDefaultImage('@item.imagePath', @item.Id)" onmouseover="changeImage('@item.imagePath', @item.Id)">
+                <img src="@item.imagePath" class="card-img-top" id="@item.Id" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title"> @item.Name </h5>
+                    <p class="card-text">Some info about the item</p>
+                    <p class="card-price">Price: @item.Price₪</p>
+                    <form asp-controller="Carts" asp-action="AddProductToCart" class="addToCartButton" asp-route-id="@item.Id" method="post">
+                        <button type="submit" class="btn btn-success">
+                            Add To Cart
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<script>
+   function changeImage(itemImage, itemId) {
+       $(`#${itemId}`).attr("src", "https://i.imgur.com/3YYgxBJ.jpeg");
+    }
+    function changeBackToDefaultImage(itemImage, itemId) {
+        $(`#${itemId}`).attr("src", `${itemImage}`);
+    }
+</script>
+
+
+
+
+
+@*------------------------------------------ORIGINAL
+
+    @*<div class="col-md-3">
+            <div class="card mb-4" style=" padding: .75rem; border: 1px solid; border-radius: 3px; box-shadow: 0px 0px 0.1px 0.8px rgba(0,0,0,1);">
+                <img src="@item.imagePath" class="card-img-top" alt="item image" style="height: 10rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text @priceColor font-weight-bolder">Price: $@item.Price</p>
+                    <div class="card-buttons row justify-content-around">
+                        <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        <form asp-controller="Carts" asp-action="AddProductToCart" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-success">
+                                Add To Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    *@
+    

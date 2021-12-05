@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GameStoreIL</title>
+    <link rel="icon" href="https://i.pinimg.com/474x/53/4b/3d/534b3d306b597e6c19291686b5e04033.jpg" type="image/icon type">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow nav-main-container">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Game Store IL</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link text-dark">About Us</a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        @if (Context.User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown" style="cursor: pointer;">
+                                <a class="btn dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="\Categories\Index">Categories</a></li>
+                                    <li><a class="dropdown-item" href="\Products\Index">Products</a></li>
+                                    <li><a class="dropdown-item" href="\Carts\Index">Carts</a></li>
+                                    <li><a class="dropdown-item" href="\Users\Index">Users</a></li>
+                                    <li><a class="dropdown-item" href="\Products\Statistics">Statistics</a></li>
+                                </ul>
+                            </li>
+                        }
+                        @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark d-flex flex-column nav-flex-item" asp-action="MyCart" asp-controller="Carts" asp-area="">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    Cart
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav-flex-item" asp-area="" asp-controller="Users" asp-action="Logout">
+                                    <i class="far fa-user"></i>
+                                    Log out
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark nav-flex-item" asp-area="" asp-controller="Users" asp-action="Login">
+                                    <i class="far fa-user"></i>
+                                    Log in
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="site-background">
+        <div class="container">
+
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+    </div>
+    <footer class="border-top footer text-muted text-center">
+        <div class="container">
+            &copy; 2021 - WebApplication_GameStoreIL - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+        </div>
+        <div class="nav-item">
+            @*share and like in facebook*@
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="WQZ6fbtV"></script>
+            <div class="fb-like" data-href="https://www.linkpicture.com/q/GameStoreIL.png" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<style>
+    .site-background {
+        background-image: linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%);
+    }
+</style>

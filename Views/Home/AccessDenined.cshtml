@@ -1,0 +1,24 @@
+﻿<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+@{
+    ViewData["Title"] = "Access Denined";
+}
+
+<head>
+    <title>Access Denied</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="w3-display-middle text-light">
+        <h1 class="w3-center w3-animate-right text-danger">
+            Access Denied
+
+        </h1>
+        <hr class="w3-border-white w3-animate-left hrStyle">
+        <h3 class="w3-center w3-animate-right">You are not authorized to access this page.</h3>
+        <h6 class="w3-center w3-animate-zoom">
+            <a asp-controller="Users" asp-action="LogOut">click here </a> to signin with a diffrent user
+        </h6>
+    </div>
+</body>

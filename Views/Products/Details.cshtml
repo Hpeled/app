@@ -1,0 +1,29 @@
+﻿@model WebApplication_GameStoreIL.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card mt-5" style="border-radius: 20px;">
+    <div class="row no-gutters">
+        <div class="col-md-6">
+            <img src="@Model.imagePath" class="img-fluid" style="border-radius: 20px 0px 0px 20px;">
+        </div>
+        <div class="col-md-6">
+            <div class="card-block p-4">
+                <h3 class="card-title display-4">@Model.Name</h3>
+                <p class="card-text"><span class="font-weight-bolder">Category:</span> @Model.Category.Name</p>
+                <p class="card-text"><span class="font-weight-bolder">Price:</span> @Model.Price</p>
+                <form asp-controller="Carts" asp-action="AddProductToCart" asp-route-id="@Model.Id" method="post" class="mb-5">
+                    <button type="submit" class="btn btn-success">
+                        Add To Cart
+                    </button>
+                </form>
+                <a href="/Categories/@Html.DisplayFor(model => model.Category.Name)" class="btn btn-light">Go To product's Category</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

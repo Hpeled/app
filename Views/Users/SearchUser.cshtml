@@ -1,0 +1,84 @@
+﻿@model IEnumerable<WebApplication_GameStoreIL.Models.User>
+
+@{
+    ViewData["Title"] = "SearchUser";
+}
+
+<form asp-action="SearchUser" class="mt-4">
+    <label class="" for="User Name">User Name :</label>
+    <input type="text" id="Username" name="Username" required min="1">
+    <label class="" for="Type">Type :</label>
+    <select name="role" id="role">
+        <option value="Admin">Admin </option>
+        <option value="Client">Client </option>
+    </select>
+
+    <button type="submit" value="Search" class="btn btn-primary">Search</button>
+</form>
+
+<form asp-controller="Users" asp-action="AdvancedSearch">
+    <p class="text-dark">Advanced Search:</p>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" id="userName" class="form-control" name="userName" required min="1" placeholder="Username">
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="email" class="form-control" name="email" required min="1" placeholder="email">
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="phone" class="form-control" name="phone" required min="1" placeholder="phone">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" value="Search" class="btn btn-dark">Search</button>
+        </div>
+    </div>
+</form>
+
+<br/>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
