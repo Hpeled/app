@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Controllers\**" />
+    <Content Remove="Models\Controllers\**" />
+    <EmbeddedResource Remove="Models\Controllers\**" />
+    <None Remove="Models\Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Photos\ballgames.jpg" />
+    <None Include="wwwroot\Photos\BoxGame.png.jpg" />
+    <None Include="wwwroot\Photos\CmGames.jpg" />
+    <None Include="wwwroot\Photos\Lego_bricks.jpg" />
+    <None Include="wwwroot\Photos\PhotosBoxGames\4inarow.jpg" />
+    <None Include="wwwroot\Photos\PhotosBoxGames\double.jpg" />
+    <None Include="wwwroot\Photos\PhotosBoxGames\jangelspped.jpg" />
+    <None Include="wwwroot\Photos\PhotosBoxGames\katan.jpg" />
+    <None Include="wwwroot\Photos\PhotosBoxGames\monapol.jpg" />
+    <None Include="wwwroot\Photos\PhotosBoxGames\takii.jpg" />
+    <None Include="wwwroot\Photos\PhotosCmGames\2K21.jpg" />
+    <None Include="wwwroot\Photos\PhotosCmGames\fifa211.jpg" />
+    <None Include="wwwroot\Photos\PhotosCmGames\fortnite.jpg" />
+    <None Include="wwwroot\Photos\PhotosCmGames\gta.jpg" />
+    <None Include="wwwroot\Photos\PhotosCmGames\lego.jpg" />
+    <None Include="wwwroot\Photos\PhotosCmGames\sonic.jpg" />
+    <None Include="wwwroot\Photos\PhotosHashiva\damka.jpg" />
+    <None Include="wwwroot\Photos\PhotosHashiva\Memory-game.jpg" />
+    <None Include="wwwroot\Photos\PhotosHashiva\rubicob.jpg" />
+    <None Include="wwwroot\Photos\PhotosHashiva\shahmath.jpg" />
+    <None Include="wwwroot\Photos\PhotosHashiva\simon.jpg" />
+    <None Include="wwwroot\Photos\PhotosHashiva\sudukuku.jpg" />
+    <None Include="wwwroot\Photos\PhotosLego\legohome.gif" />
+    <None Include="wwwroot\Photos\PhotosLego\legojip.jpg" />
+    <None Include="wwwroot\Photos\PhotosLego\legomatos.jpg" />
+    <None Include="wwwroot\Photos\PhotosLego\legomenake.jpg" />
+    <None Include="wwwroot\Photos\PhotosLego\legoundetwater.jpg" />
+    <None Include="wwwroot\Photos\PhotosLego\sfinalego.jpg" />
+    <None Include="wwwroot\Photos\PhotosSport\bascketball.jpg" />
+    <None Include="wwwroot\Photos\PhotosSport\football.jpg" />
+    <None Include="wwwroot\Photos\PhotosSport\kaduraf.jpg" />
+    <None Include="wwwroot\Photos\PhotosSport\pingpong.jpg" />
+    <None Include="wwwroot\Photos\PhotosSport\soccerball.jpeg" />
+    <None Include="wwwroot\Photos\PhotosSport\tenis.jpg" />
+    <None Include="wwwroot\Photos\suduku.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>
